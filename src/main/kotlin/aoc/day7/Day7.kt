@@ -7,7 +7,6 @@ import java.util.*
 fun main() {
     val input = loadInput("input_day7.txt")
     val rules = input.map { parseRule(it) }.toMap()
-    println(rules)
     println(containedBy(rules, "shiny gold"))
     println(contains(rules, "shiny gold") - 1)
 }
