@@ -1,11 +1,10 @@
 package aoc.day7
 
-import java.io.File
-import java.nio.charset.Charset
+import aoc.toListOfString
 import java.util.*
 
 fun main() {
-    val input = loadInput("input_day7.txt")
+    val input = toListOfString("input_day7.txt")
     val rules = input.map { parseRule(it) }.toMap()
     println(containedBy(rules, "shiny gold"))
     println(contains(rules, "shiny gold") - 1)
@@ -67,7 +66,3 @@ fun contains(rules: Map<String, List<Bag>>, target: String): Int {
 }
 
 data class Bag(val color: String, val quantity: Int)
-
-fun loadInput(inputFile: String): List<String> {
-    return File(ClassLoader.getSystemResource(inputFile).file).readLines(Charset.defaultCharset())
-}

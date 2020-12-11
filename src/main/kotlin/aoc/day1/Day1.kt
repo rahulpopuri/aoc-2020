@@ -1,11 +1,11 @@
 package aoc.day1
 
-import java.io.File
-import java.io.InputStream
+import aoc.toIntArray
 import java.util.*
 
 fun main() {
-    val input = loadInput("input_day1.txt")
+    val input = toIntArray("input_day1.txt")
+    input.sort()
     println(twoSumMultiply(input, 2020))
     println(threeSumMultiply(input, 2020))
 }
@@ -13,7 +13,7 @@ fun main() {
 /**
  * Find 2 numbers that sum to "target" and multiply them
  */
-fun twoSumMultiply(input: Array<Int>, target: Int): Int {
+fun twoSumMultiply(input: IntArray, target: Int): Int {
     val pair = twoSum(input, target)
     if (pair != null) {
         println("" + pair.first + " + " + pair.second + " = " + target)
@@ -22,7 +22,7 @@ fun twoSumMultiply(input: Array<Int>, target: Int): Int {
     return 0
 }
 
-fun twoSum(a: Array<Int>, target: Int): Pair<Int, Int>? {
+fun twoSum(a: IntArray, target: Int): Pair<Int, Int>? {
     for (i in 0 until a.size - 2) {
         if (a[i] <= target) {
             for (j in i + 1 until a.size - 1) {
@@ -40,7 +40,7 @@ fun twoSum(a: Array<Int>, target: Int): Pair<Int, Int>? {
 /**
  * Find 3 numbers that sum to "target" and multiply them
  */
-fun threeSumMultiply(input: Array<Int>, target: Int): Int {
+fun threeSumMultiply(input: IntArray, target: Int): Int {
     val result = threeSum(input, target)
     if (result != null) {
         println("3Sum to " + target + ":" + Arrays.toString(result))
@@ -49,7 +49,7 @@ fun threeSumMultiply(input: Array<Int>, target: Int): Int {
     return 0
 }
 
-fun threeSum(a: Array<Int>, target: Int): IntArray? {
+fun threeSum(a: IntArray, target: Int): IntArray? {
     var sum: Int
     for (i in 0 until a.size - 2) {
         var j = i + 1
@@ -70,13 +70,4 @@ fun threeSum(a: Array<Int>, target: Int): IntArray? {
         }
     }
     return null
-}
-
-fun loadInput(inputFile: String): Array<Int> {
-    val inputStream: InputStream = File(ClassLoader.getSystemResource(inputFile).file).inputStream()
-    val lineList = mutableListOf<Int>()
-    inputStream.bufferedReader().forEachLine { line -> lineList.add(line.toInt()) }
-    val result = lineList.toTypedArray()
-    result.sort()
-    return result
 }

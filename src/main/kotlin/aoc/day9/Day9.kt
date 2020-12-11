@@ -1,10 +1,9 @@
 package aoc.day9
 
-import java.io.File
-import java.io.InputStream
+import aoc.toListOfLong
 
 fun main() {
-    val input = loadInput("input_day9.txt")
+    val input = toListOfLong("input_day9.txt")
     println(firstInvalidNum(input, 25))
     println(contiguousSum(input, 393911906))
 }
@@ -41,15 +40,4 @@ fun contiguousSum(a: List<Long>, target: Long): Long {
         }
     }
     return 0
-}
-
-fun loadInput(inputFile: String): List<Long> {
-    val inputStream: InputStream = File(ClassLoader.getSystemResource(inputFile).file).inputStream()
-    val result = mutableListOf<Long>()
-    inputStream.bufferedReader().forEachLine { line ->
-        run {
-            result.add(line.toLong())
-        }
-    }
-    return result
 }

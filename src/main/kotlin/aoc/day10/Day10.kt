@@ -1,9 +1,9 @@
 package aoc.day10
 
-import aoc.day9.loadInput
+import aoc.toListOfLong
 
 fun main() {
-    val input = loadInput("input_day10.txt").sorted()
+    val input = toListOfLong("input_day10.txt").sorted()
     val differences = joltDifferences(input)
     println(differences[3]?.let { differences[1]?.times(it) })
     println(numCombinations(input))
