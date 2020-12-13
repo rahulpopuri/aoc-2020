@@ -1,6 +1,5 @@
-package aoc.day12
+package aoc
 
-import aoc.toListOfString
 import java.util.*
 import kotlin.math.abs
 

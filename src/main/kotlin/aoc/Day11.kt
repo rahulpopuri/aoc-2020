@@ -1,7 +1,4 @@
-package aoc.day11
-
-import aoc.copy
-import aoc.to2dCharArray
+package aoc
 
 fun main() {
     val input = to2dCharArray("input_day11.txt")
