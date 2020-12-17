@@ -11,6 +11,13 @@ fun to2dCharArray(inputFile: String): Array<Array<Char>> {
         .toTypedArray()
 }
 
+fun to2dCharList(inputFile: String): List<List<Char>> {
+    return File(ClassLoader.getSystemResource(inputFile).file).readLines(Charset.defaultCharset())
+        .map { line ->
+            line.toCharArray().toList()
+        }
+}
+
 fun toListOfString(inputFile: String): List<String> {
     return File(ClassLoader.getSystemResource(inputFile).file).readLines(Charset.defaultCharset())
 }
