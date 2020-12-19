@@ -11,7 +11,7 @@ fun main() {
     println("Part 2: " + input.multiplyDepartureTicketValues())
 }
 
-data class TicketData(val rules: List<Rule>, val yourTickets: Array<Int>, val nearbyTickets: List<Array<Int>>) {
+private data class TicketData(private val rules: List<Rule>, val yourTickets: Array<Int>, val nearbyTickets: List<Array<Int>>) {
     private val validNearbyTickets = mutableListOf<Array<Int>>()
     private var invalidNearbyTicketsSum = 0
 
@@ -75,7 +75,7 @@ data class TicketData(val rules: List<Rule>, val yourTickets: Array<Int>, val ne
     }
 }
 
-data class Rule(val name: String) {
+private data class Rule(val name: String) {
     private val ranges = mutableListOf<Pair<Int, Int>>()
 
     fun addRange(input: Pair<Int, Int>) {
@@ -92,7 +92,7 @@ data class Rule(val name: String) {
     }
 }
 
-fun loadTicketData(inputFile: String): TicketData {
+private fun loadTicketData(inputFile: String): TicketData {
     val text = File(ClassLoader.getSystemResource(inputFile).file).readText(Charset.defaultCharset())
     val rules = mutableListOf<Rule>()
     val sections = text.split("\n\n")
