@@ -48,3 +48,13 @@ fun print2dArray(input: Array<Array<Char>>) {
 }
 
 fun Array<Array<Char>>.copy() = Array(size) { get(it).clone() }
+
+fun Array<Array<Char>>.flip(): Array<Array<Char>> {
+    val result = this.copy()
+    for (i in 0 until result.size / 2) {
+        val tmp = result[result.size - i - 1]
+        result[result.size - i - 1] = result[i]
+        result[i] = tmp
+    }
+    return result
+}
