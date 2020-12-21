@@ -76,3 +76,40 @@ fun Array<Array<Char>>.rotate(): Array<Array<Char>> {
     }
     return result
 }
+
+fun MutableMap<Int, Set<String>>.prune() {
+    while (this.values.any { it.size > 1 }) {
+        for (allergen in this.entries) {
+            if (allergen.value.size == 1) {
+                // remove from other entries
+                this.entries
+                    .filter { it.key != allergen.key }
+                    .filter { it.value.contains(allergen.value.elementAt(0)) }
+                    .forEach { e ->
+                        val set = HashSet(e.value)
+                        set.remove(allergen.value.elementAt(0))
+                        this[e.key] = set
+                    }
+            }
+        }
+    }
+}
+
+// Figure out how to combine with above
+fun MutableMap<String, Set<String>>.prune2() {
+    while (this.values.any { it.size > 1 }) {
+        for (allergen in this.entries) {
+            if (allergen.value.size == 1) {
+                // remove from other entries
+                this.entries
+                    .filter { it.key != allergen.key }
+                    .filter { it.value.contains(allergen.value.elementAt(0)) }
+                    .forEach { e ->
+                        val set = HashSet(e.value)
+                        set.remove(allergen.value.elementAt(0))
+                        this[e.key] = set
+                    }
+            }
+        }
+    }
+}

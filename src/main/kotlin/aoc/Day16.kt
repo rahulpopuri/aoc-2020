@@ -11,7 +11,11 @@ fun main() {
     println("Part 2: " + input.multiplyDepartureTicketValues())
 }
 
-private data class TicketData(private val rules: List<Rule>, val yourTickets: Array<Int>, val nearbyTickets: List<Array<Int>>) {
+private data class TicketData(
+    private val rules: List<Rule>,
+    val yourTickets: Array<Int>,
+    val nearbyTickets: List<Array<Int>>
+) {
     private val validNearbyTickets = mutableListOf<Array<Int>>()
     private var invalidNearbyTicketsSum = 0
 
@@ -49,21 +53,7 @@ private data class TicketData(private val rules: List<Rule>, val yourTickets: Ar
                     }
             }
         }
-        while (ruleMap.values.any { it.size > 1 }) {
-            for (rule in ruleMap.entries) {
-                if (rule.value.size == 1) {
-                    // remove from other entries
-                    ruleMap.entries
-                        .filter { it.key != rule.key }
-                        .filter { it.value.contains(rule.value.elementAt(0)) }
-                        .forEach { e ->
-                            val validRules = HashSet(e.value)
-                            validRules.remove(rule.value.elementAt(0))
-                            ruleMap[e.key] = validRules
-                        }
-                }
-            }
-        }
+        ruleMap.prune()
         val positions = ruleMap.filterValues { it -> it.any { it.startsWith("departure") } }.keys
         var result = 1L
         for (t in yourTickets.indices) {
