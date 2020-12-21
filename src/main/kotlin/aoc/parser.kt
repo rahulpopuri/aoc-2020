@@ -40,9 +40,16 @@ fun toIntArray(inputFile: String): IntArray {
     return lineList.toIntArray()
 }
 
-fun print2dArray(input: Array<Array<Char>>) {
-    for (i in input.indices) {
-        println(input[i].contentToString())
+fun Array<Array<Int>>.print() {
+    for (i in this.indices) {
+        println(this[i].contentToString())
+    }
+    println()
+}
+
+fun Array<Array<Char>>.print() {
+    for (i in this.indices) {
+        println(this[i].contentToString())
     }
     println()
 }
@@ -55,6 +62,17 @@ fun Array<Array<Char>>.flip(): Array<Array<Char>> {
         val tmp = result[result.size - i - 1]
         result[result.size - i - 1] = result[i]
         result[i] = tmp
+    }
+    return result
+}
+
+fun Array<Array<Char>>.rotate(): Array<Array<Char>> {
+    val result = this.copy()
+    val width = this.size
+    for (i in result.indices) {
+        for (j in result[i].indices) {
+            result[i][j] = this[width - 1 - j][i]
+        }
     }
     return result
 }
